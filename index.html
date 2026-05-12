@@ -19,6 +19,7 @@
     </a>
     <nav class="topnav" aria-label="主要セクション">
       <a href="#dashboard">地図</a>
+      <a href="#expedition">3D探検</a>
       <a href="#lenses">視点</a>
       <a href="#timeline">歴史</a>
       <a href="#quiz">クイズ</a>
@@ -70,6 +71,50 @@
 
           <aside class="group-card" id="groupCard" aria-live="polite"></aside>
         </div>
+      </div>
+    </section>
+
+    <section class="expedition" id="expedition" aria-labelledby="expedition-title">
+      <div class="expedition-copy">
+        <p class="eyebrow">3D Expedition</p>
+        <h2 id="expedition-title">列島を飛んで、発見で覚える</h2>
+        <p>本格的に作るなら NASA/USGS の SRTM 標高データ、Natural Earth や GADM の境界データ、OpenStreetMap の道路・建物データが使えます。このゲームではページを軽く保つため、フィリピンの位置関係と山・都市・海路を学習用に簡略化した3Dモデルで探検します。</p>
+      </div>
+
+      <div class="expedition-stage" id="expeditionStage" aria-label="3Dフィリピン探検ゲーム">
+        <canvas id="expeditionCanvas"></canvas>
+
+        <div class="expedition-hud" aria-live="polite">
+          <div>
+            <span class="hud-label">Mission</span>
+            <strong id="missionTitle">調査地点を探す</strong>
+          </div>
+          <div class="hud-meter">
+            <span id="expeditionScore">0 / 12</span>
+            <progress id="expeditionProgress" max="12" value="0"></progress>
+          </div>
+          <p id="missionHint">WASD / 矢印キーで進み、光っている地点に近づくと発見できます。</p>
+          <div class="hud-actions">
+            <button class="hud-btn" id="guideNext" type="button">次の方角</button>
+            <button class="hud-btn" id="resetExpedition" type="button">リセット</button>
+          </div>
+        </div>
+
+        <div class="place-panel" id="placePanel">
+          <span class="hud-label">Discovery Log</span>
+          <h3 id="placeName">まだ未発見</h3>
+          <p id="placeLesson">光の柱に近づくと、その場所の地理・歴史・文化のメモが開きます。</p>
+          <div class="mini-tags" id="placeTags"></div>
+        </div>
+
+        <div class="touch-controls" aria-label="移動ボタン">
+          <button class="move-btn" data-control="forward" type="button" aria-label="前へ">↑</button>
+          <button class="move-btn" data-control="left" type="button" aria-label="左へ">←</button>
+          <button class="move-btn" data-control="back" type="button" aria-label="後ろへ">↓</button>
+          <button class="move-btn" data-control="right" type="button" aria-label="右へ">→</button>
+        </div>
+
+        <div class="webgl-note" id="webglNote" hidden>このブラウザでは3D表示を初期化できませんでした。</div>
       </div>
     </section>
 
@@ -134,6 +179,10 @@
         <li><a href="https://psa.gov.ph/content/2024-census-population-popcen-population-counts-declared-official-president?vcode=ZvRk" target="_blank" rel="noopener">Philippine Statistics Authority - 2024 Census of Population</a></li>
         <li><a href="https://www.cia.gov/the-world-factbook/countries/philippines/" target="_blank" rel="noopener">CIA World Factbook - Philippines</a></li>
         <li><a href="https://beta.tourism.gov.ph/news_and_updates/dot-launches-digital-travel-magazine-7641/" target="_blank" rel="noopener">Department of Tourism - 7,641 Islands</a></li>
+        <li><a href="https://www.earthdata.nasa.gov/data/catalog/lpcloud-srtmgl3-003" target="_blank" rel="noopener">NASA Earthdata - SRTM Global 3 arc second DEM</a></li>
+        <li><a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth - Public domain vector and raster map data</a></li>
+        <li><a href="https://gadm.org/" target="_blank" rel="noopener">GADM - Administrative boundary data</a></li>
+        <li><a href="https://wiki.openstreetmap.org/wiki/Philippines/Data_sources" target="_blank" rel="noopener">OpenStreetMap Wiki - Philippines data sources</a></li>
         <li><a href="https://lawphil.net/consti/cons1987.html" target="_blank" rel="noopener">1987 Constitution of the Republic of the Philippines</a></li>
         <li><a href="https://www.bsp.gov.ph/" target="_blank" rel="noopener">Bangko Sentral ng Pilipinas</a></li>
       </ul>
@@ -141,5 +190,6 @@
   </main>
 
   <script src="app.js"></script>
+  <script type="module" src="explorer3d.js"></script>
 </body>
 </html>
