@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>フィリピン・レンズ | Philippines Explorer</title>
+  <meta name="description" content="島、地域、ことば、歴史、文化、経済からフィリピンを立体的に知る学習アプリ。">
+  <meta property="og:title" content="フィリピン・レンズ">
+  <meta property="og:description" content="フィリピンを地図、クイズ、フレーズ、タイムラインで学ぶブラウザアプリ。">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0b6f72">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#dashboard" aria-label="フィリピン・レンズ">
+      <span class="brand-mark">◆</span>
+      <span>フィリピン・レンズ</span>
+    </a>
+    <nav class="topnav" aria-label="主要セクション">
+      <a href="#dashboard">地図</a>
+      <a href="#lenses">視点</a>
+      <a href="#timeline">歴史</a>
+      <a href="#quiz">クイズ</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="dashboard" id="dashboard" aria-labelledby="app-title">
+      <div class="dashboard-copy">
+        <p class="eyebrow">Philippines Explorer</p>
+        <h1 id="app-title">島で見る。ことばで聞く。歴史でつながる。</h1>
+        <p class="lead">フィリピンを「首都と観光地」だけで終わらせず、7,641の島、18地域、多言語社会、交易と植民地、移民、災害と復興までひとつの地図でつかむアプリです。</p>
+        <div class="metric-row" id="metricRow"></div>
+      </div>
+
+      <div class="map-panel" aria-label="島グループの地図">
+        <div class="group-switch" id="groupSwitch" role="tablist" aria-label="島グループ"></div>
+        <div class="map-grid">
+          <svg class="ph-map" viewBox="0 0 420 520" role="img" aria-labelledby="mapTitle mapDesc">
+            <title id="mapTitle">フィリピンの島グループ概略図</title>
+            <desc id="mapDesc">ルソン、ビサヤ、ミンダナオの位置関係を学習用に単純化した地図。</desc>
+            <g class="sea-lines" aria-hidden="true">
+              <path d="M40 72 C130 22 255 38 378 88" />
+              <path d="M28 198 C156 158 270 164 396 218" />
+              <path d="M54 344 C170 304 286 324 382 396" />
+            </g>
+            <g class="island-group group-luzon" data-group="luzon">
+              <path d="M171 40 C205 52 218 82 204 111 C222 135 221 169 198 185 C174 203 134 191 128 160 C100 145 96 108 120 90 C123 62 145 38 171 40 Z" />
+              <path d="M216 165 C238 176 245 199 234 219 C219 238 190 231 184 209 C179 186 194 166 216 165 Z" />
+              <path d="M126 204 C146 208 158 223 153 242 C148 262 120 265 108 248 C96 231 105 207 126 204 Z" />
+            </g>
+            <g class="island-group group-visayas" data-group="visayas">
+              <path d="M186 256 C211 247 237 254 247 272 C238 293 207 300 183 287 C168 279 169 264 186 256 Z" />
+              <path d="M122 284 C145 271 176 279 184 299 C172 319 138 321 118 306 C107 297 110 290 122 284 Z" />
+              <path d="M262 292 C287 281 315 289 326 309 C317 330 283 335 260 321 C244 311 245 299 262 292 Z" />
+              <path d="M205 326 C231 315 260 323 270 344 C258 366 223 369 201 354 C187 344 188 333 205 326 Z" />
+            </g>
+            <g class="island-group group-mindanao" data-group="mindanao">
+              <path d="M205 382 C252 348 326 353 356 397 C375 426 360 466 326 481 C286 499 231 484 198 450 C176 426 179 399 205 382 Z" />
+              <path d="M128 388 C154 377 183 385 194 407 C183 430 148 434 126 418 C111 407 112 395 128 388 Z" />
+              <path d="M93 454 C118 443 145 449 154 468 C143 489 109 493 89 478 C77 469 79 460 93 454 Z" />
+            </g>
+            <g class="city-dots" aria-hidden="true">
+              <circle cx="160" cy="142" r="5" />
+              <circle cx="225" cy="282" r="5" />
+              <circle cx="269" cy="420" r="5" />
+            </g>
+          </svg>
+
+          <aside class="group-card" id="groupCard" aria-live="polite"></aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section band" id="lenses" aria-labelledby="lenses-title">
+      <div class="section-head">
+        <p class="eyebrow">Six Lenses</p>
+        <h2 id="lenses-title">6つの視点で、記憶を立体にする</h2>
+      </div>
+      <div class="lens-grid" id="lensGrid"></div>
+    </section>
+
+    <section class="section split" aria-labelledby="phrases-title">
+      <div class="phrase-panel">
+        <div class="section-head compact">
+          <p class="eyebrow">Language Desk</p>
+          <h2 id="phrases-title">フィリピン語の入口</h2>
+        </div>
+        <div class="phrase-card" id="phraseCard"></div>
+        <div class="icon-actions">
+          <button class="icon-btn" id="prevPhrase" type="button" aria-label="前のフレーズ">‹</button>
+          <button class="primary-btn" id="flipPhrase" type="button">意味を確認</button>
+          <button class="icon-btn" id="nextPhrase" type="button" aria-label="次のフレーズ">›</button>
+        </div>
+      </div>
+
+      <div class="region-panel">
+        <div class="section-head compact">
+          <p class="eyebrow">Region Drill</p>
+          <h2>18地域を島グループで覚える</h2>
+        </div>
+        <div class="region-list" id="regionList"></div>
+      </div>
+    </section>
+
+    <section class="section band" id="timeline" aria-labelledby="timeline-title">
+      <div class="section-head">
+        <p class="eyebrow">Timeline</p>
+        <h2 id="timeline-title">年表は、国の読み方を変える</h2>
+      </div>
+      <div class="timeline" id="timelineTrack"></div>
+    </section>
+
+    <section class="section quiz-section" id="quiz" aria-labelledby="quiz-title">
+      <div class="quiz-copy">
+        <p class="eyebrow">Quiz</p>
+        <h2 id="quiz-title">10問で、知識を定着</h2>
+        <p>地理、ことば、歴史、社会の問題をランダムに出題します。答えるたびに理由が残ります。</p>
+        <div class="score-box">
+          <span id="scoreText">0 / 0</span>
+          <progress id="quizProgress" max="10" value="0"></progress>
+        </div>
+      </div>
+      <div class="quiz-card" id="quizCard" aria-live="polite"></div>
+    </section>
+
+    <section class="section sources" aria-labelledby="sources-title">
+      <div class="section-head compact">
+        <p class="eyebrow">Sources</p>
+        <h2 id="sources-title">出典</h2>
+      </div>
+      <ul>
+        <li><a href="https://psa.gov.ph/content/2024-census-population-popcen-population-counts-declared-official-president?vcode=ZvRk" target="_blank" rel="noopener">Philippine Statistics Authority - 2024 Census of Population</a></li>
+        <li><a href="https://www.cia.gov/the-world-factbook/countries/philippines/" target="_blank" rel="noopener">CIA World Factbook - Philippines</a></li>
+        <li><a href="https://beta.tourism.gov.ph/news_and_updates/dot-launches-digital-travel-magazine-7641/" target="_blank" rel="noopener">Department of Tourism - 7,641 Islands</a></li>
+        <li><a href="https://lawphil.net/consti/cons1987.html" target="_blank" rel="noopener">1987 Constitution of the Republic of the Philippines</a></li>
+        <li><a href="https://www.bsp.gov.ph/" target="_blank" rel="noopener">Bangko Sentral ng Pilipinas</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
